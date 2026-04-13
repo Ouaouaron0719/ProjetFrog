@@ -10,7 +10,7 @@ public class Player_WallSlideState : EntityState
     {
         base.Update();
 
-        if (input.Player.Jump.WasPressedThisFrame())
+        if (input.Player.Jump.WasPressedThisFrame() && player.canWallJump)
         {
             stateMachine.ChangeState(player.wallJumpState);
             return;

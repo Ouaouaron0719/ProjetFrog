@@ -10,6 +10,7 @@ public class Player_WallJumpState : EntityState
     {
         base.Enter();
 
+        stateTimer = 0.15f;
         player.SetVelocity(player.wallJumpDir.x *-player.facingDir, player.wallJumpDir.y);
     }
 

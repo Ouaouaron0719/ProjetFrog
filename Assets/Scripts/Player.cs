@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public bool canDash { get; private set; } = false;
     public Player_DashState dashState { get; private set; }
 
-    //public bool canWallJump { get; private set; } = false;
+    public bool canWallJump { get; private set; } = false;
     public Player_WallJumpState wallJumpState { get; private set; }
 
 
@@ -140,6 +140,10 @@ public class Player : MonoBehaviour
     public void UnlockWallSlide()
     {
         canWallSlide = true;
+    }
+    public void UnlockWallJump()
+    {
+        canWallJump = true;
     }
     public bool CanUseDash()
     {

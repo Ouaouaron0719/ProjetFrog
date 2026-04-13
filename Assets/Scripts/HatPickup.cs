@@ -27,6 +27,10 @@ public class HatPickup : MonoBehaviour
                 player.UnlockWallSlide();
                 UIMessageManager.Instance.ShowMessage("I can slide on walls now!");
                 break;
+            case AbilityType.WallJump:
+                player.UnlockWallJump();
+                UIMessageManager.Instance.ShowMessage("I can jump on walls during sliding now!");
+                break;
         }
 
         if (pickupEffectPrefab != null)
