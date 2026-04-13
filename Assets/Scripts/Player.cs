@@ -21,16 +21,25 @@ public class Player : MonoBehaviour
     public bool canDash { get; private set; } = false;
     public Player_DashState dashState { get; private set; }
 
+    //public bool canWallJump { get; private set; } = false;
+    public Player_WallJumpState wallJumpState { get; private set; }
+
+
 
     [Header("Movement Details")]
     public float moveSpeed;
     public float jumpForce = 5;
+    public Vector2 wallJumpDir;
     public float inAireMoveMultiplier = .7f;
     public float dashDuration = .25f;
     public float dashSpeed = 20;
     private bool facingLeft = true;
     public int facingDir { get; private set; } = -1;
     public Vector2 moveInput { get; private set; }
+
+    [Header("Dash Details")]
+    public float dashCooldown = 1f;
+    private float dashCooldownTimer;
 
     [Header("Collision Detection")]
     [SerializeField] private float groundCheckDistance;
@@ -53,6 +62,7 @@ public class Player : MonoBehaviour
         fallState = new Player_FallState(stateMachine, "jumpFall", this);
         dashState = new Player_DashState(stateMachine, "dash", this);
         wallSlideState = new Player_WallSlideState(stateMachine,"wallSlide", this);
+        wallJumpState = new Player_WallJumpState(stateMachine, "jumpFall", this);
     }
 
     private void OnEnable()
@@ -73,6 +83,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         HandleCollisionDetection();
+
+        if (dashCooldownTimer > 0)
+            dashCooldownTimer -= Time.deltaTime;
+
         stateMachine.UpdateActiveState();
     }
 
@@ -126,5 +140,14 @@ public class Player : MonoBehaviour
     public void UnlockWallSlide()
     {
         canWallSlide = true;
+    }
+    public bool CanUseDash()
+    {
+        return canDash && dashCooldownTimer <= 0f;
+    }
+
+    public void StartDashCooldown()
+    {
+        dashCooldownTimer = dashCooldown;
     }
 }

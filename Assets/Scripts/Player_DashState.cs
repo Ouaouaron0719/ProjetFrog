@@ -12,6 +12,7 @@ public class Player_DashState : EntityState
         base.Enter();
 
         stateTimer = player.dashDuration;
+        player.StartDashCooldown();
 
         originalGravityScale = rb.gravityScale;
         rb.gravityScale = 0;
