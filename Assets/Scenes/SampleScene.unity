@@ -261,6 +261,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1958072724025158394, guid: c826fd813de06af489cd4e5088f81797, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -7684046354676129167, guid: 877655edb77b15c4b8656d1f9e9a27a4, type: 3}
+    - target: {fileID: 1958072724025158394, guid: c826fd813de06af489cd4e5088f81797, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3126509013324875772, guid: c826fd813de06af489cd4e5088f81797, type: 3}
       propertyPath: m_Name
       value: AbilityHat
@@ -1198,6 +1206,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1958072724025158394, guid: c826fd813de06af489cd4e5088f81797, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5308448175360178355, guid: 831a3984203e9c944b3442152b03be42, type: 3}
+    - target: {fileID: 1958072724025158394, guid: c826fd813de06af489cd4e5088f81797, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3126509013324875772, guid: c826fd813de06af489cd4e5088f81797, type: 3}
       propertyPath: m_Name
       value: AbilityHat (1)
