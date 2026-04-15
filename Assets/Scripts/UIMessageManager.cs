@@ -4,6 +4,7 @@ using System.Collections;
 
 public class UIMessageManager : MonoBehaviour
 {
+    public static UIMessageManager Instance { get; private set; }
     [SerializeField] private TextMeshProUGUI messageText;
     [SerializeField] private float displayTime = 2f;
 
