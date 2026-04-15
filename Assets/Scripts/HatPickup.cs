@@ -21,15 +21,15 @@ public class HatPickup : MonoBehaviour
         {
             case AbilityType.Dash:
                 player.UnlockDash();
-                UIMessageManager.Instance.ShowMessage("I can dash now!");
+                GameEvents.ShowMessage("I can dash now!");
                 break;
             case AbilityType.WallSlide:
                 player.UnlockWallSlide();
-                UIMessageManager.Instance.ShowMessage("I can slide on walls now!");
+                GameEvents.ShowMessage("I can slide on walls now!");
                 break;
             case AbilityType.WallJump:
                 player.UnlockWallJump();
-                UIMessageManager.Instance.ShowMessage("I can jump on walls during sliding now!");
+                GameEvents.ShowMessage("I can jump on walls during sliding now!");
                 break;
         }
 

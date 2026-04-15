@@ -4,8 +4,6 @@ using System.Collections;
 
 public class UIMessageManager : MonoBehaviour
 {
-    public static UIMessageManager Instance;
-
     [SerializeField] private TextMeshProUGUI messageText;
     [SerializeField] private float displayTime = 2f;
 
@@ -13,8 +11,17 @@ public class UIMessageManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
         messageText.gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnShowMessage += ShowMessage;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnShowMessage -= ShowMessage;
     }
 
     public void ShowMessage(string message)
@@ -32,5 +39,6 @@ public class UIMessageManager : MonoBehaviour
     {
         yield return new WaitForSeconds(displayTime);
         messageText.gameObject.SetActive(false);
+        currentCoroutine = null;
     }
 }
