@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
+        LoadAbilities();
         stateMachine.Initialize(idleState);
     }
     private void Update()
@@ -136,14 +137,20 @@ public class Player : MonoBehaviour
     public void UnlockDash()
     {
         canDash = true;
+        if (DatabaseManager.Instance != null)
+            DatabaseManager.Instance.SaveAbility("Dash", true);
     }
     public void UnlockWallSlide()
     {
         canWallSlide = true;
+        if (DatabaseManager.Instance != null)
+            DatabaseManager.Instance.SaveAbility("WallSlide", true);
     }
     public void UnlockWallJump()
     {
         canWallJump = true;
+        if (DatabaseManager.Instance != null)
+            DatabaseManager.Instance.SaveAbility("WallJump", true);
     }
     public bool CanUseDash()
     {
@@ -153,5 +160,14 @@ public class Player : MonoBehaviour
     public void StartDashCooldown()
     {
         dashCooldownTimer = dashCooldown;
+    }
+    private void LoadAbilities()
+    {
+        if (DatabaseManager.Instance == null)
+            return;
+
+        canDash = DatabaseManager.Instance.LoadAbility("Dash");
+        canWallSlide = DatabaseManager.Instance.LoadAbility("WallSlide");
+        canWallJump = DatabaseManager.Instance.LoadAbility("WallJump");
     }
 }
