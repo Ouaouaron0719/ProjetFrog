@@ -4,15 +4,19 @@ using System.Collections;
 
 public class UIMessageManager : MonoBehaviour
 {
-    public static UIMessageManager Instance { get; private set; }
     [SerializeField] private TextMeshProUGUI messageText;
-    [SerializeField] private float displayTime = 2f;
+
+    [Header("Display Time Settings")]
+    [SerializeField] private float baseDisplayTime = 1.2f;
+    [SerializeField] private float timePerCharacter = 0.05f;
+    [SerializeField] private float maxDisplayTime = 4f;
 
     private Coroutine currentCoroutine;
 
     private void Awake()
     {
-        messageText.gameObject.SetActive(false);
+        if (messageText != null)
+            messageText.gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -33,10 +37,20 @@ public class UIMessageManager : MonoBehaviour
         if (currentCoroutine != null)
             StopCoroutine(currentCoroutine);
 
-        currentCoroutine = StartCoroutine(HideAfterTime());
+        float displayTime = CalculateDisplayTime(message);
+        currentCoroutine = StartCoroutine(HideAfterTime(displayTime));
     }
 
-    private IEnumerator HideAfterTime()
+    private float CalculateDisplayTime(string message)
+    {
+        if (string.IsNullOrEmpty(message))
+            return baseDisplayTime;
+
+        float calculatedTime = baseDisplayTime + message.Length * timePerCharacter;
+        return Mathf.Min(calculatedTime, maxDisplayTime);
+    }
+
+    private IEnumerator HideAfterTime(float displayTime)
     {
         yield return new WaitForSeconds(displayTime);
         messageText.gameObject.SetActive(false);

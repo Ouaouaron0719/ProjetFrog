@@ -6,6 +6,7 @@ public class HintTrigger : MonoBehaviour
     [SerializeField] private string message;
 
     [SerializeField] private bool triggerOnce = true;
+    //[SerializeField] private float displayTime = 2f;
 
     private bool hasTriggered = false;
 
